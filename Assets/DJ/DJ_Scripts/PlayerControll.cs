@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerControll : MonoBehaviour
 {
-    public float jumpHeight = 0;            //Á¡ÇÁ ³ôÀÌ
-    public float jumpSpeed = 0;             //Á¡ÇÁ ½ºÇÇµå
+    public float jumpHeight = 0;            //ì í”„ ìµœëŒ€ ë†’ì´
+    public float jumpSpeed = 0;             //ì í”„ ìŠ¤í”¼ë“œ
 
-    bool isJump = false;                    //Á¡ÇÁ »óÅÂ
-    bool isTop = false;                     //ÀÏÁ¤ ³ôÀÌ¿¡ µµ´ŞÇÏ¸é ÇÔ¼öÀÛµ¿¸ØÃß°Ô ÇÏ±â À§ÇÔ
+    bool isJump = false;                    //ì í”„ ìƒíƒœ
+    bool isTop = false;                     //ìµœëŒ€ ë†’ì´ì¸ì§€ í™•ì¸
 
-    Vector2 startPosition;                  //Á¡ÇÁÈÄ µ¹¾Æ¿Ã Æ÷Áö¼Ç ÃÊ±â°ª
+    Vector2 startPosition;                  //ì í”„ í›„ ëŒì•„ì˜¬ ìœ„ì¹˜
 
     void Start()
     {
@@ -18,31 +18,47 @@ public class PlayerControll : MonoBehaviour
     } 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))                  //Å¬¸¯ ÇßÀ» °æ¿ì
+        //if(GameManager.instance.isPlay)          //ì• ë‹ˆë©”ì´ì…˜ ì ìš© í›„ ì‚¬ìš©
+        //{
+        //  animator.SetBool("run", true);
+        //}
+        //else
+        //animator.SetBool("run", false);
+
+        if (Input.GetMouseButtonDown(0)&&GameManager.instance.isPlay)                  //í™”ë©´ í„°ì¹˜ ì‹œ
         {
-            isJump = true;                                //Á¡ÇÁ»óÅÂ True
+            isJump = true;                                //ì í”„ ìƒíƒœ True
         }
-        else if(transform.position.y <= startPosition.y)  //Á¡ÇÁ ÈÄ ¶¥À¸·Î ³»·Á¿ÔÀ» ¶§ Á¡ÇÁ¿¡ È°¿ëµÈ °ª ÃÊ±âÈ­
+        else if(transform.position.y <= startPosition.y)  //ì í”„ í›„ ë°”ë‹¥ìœ¼ë¡œ ë‚´ë ¤ ì™”ì„ ê²½ìš° ì í”„ì— ì‚¬ìš©í•œ ìƒíƒœì™€ ìœ„ì¹˜ ì´ˆê¸°í™”
         {
             isJump = false;
             isTop = false;
             transform.position = startPosition;
         }
-        if (isJump)   //Á¡ÇÁ »óÅÂ
+        if (isJump)   //ì í”„ í–ˆì„ ë•Œ
         {
-            if (transform.position.y <= jumpHeight - 0.1f && !isTop)                 //Á¡ÇÁ»óÅÂÀÏ ¶§ ÃÖ°í Á¡¿¡ µµ´ŞÇÏ±â Àü
+            if (transform.position.y <= jumpHeight - 0.1f && !isTop)                 //ì í”„ ìƒíƒœì¸ë° ìµœëŒ€ ë†’ì´ê°€ ì•„ë‹ ê²½ìš°
             {
-                transform.position = Vector2.Lerp(transform.position, new Vector2(transform.position.x, jumpHeight), jumpSpeed * Time.deltaTime); //ÃÖ°íÁ¡±îÁö ¿Ã¶ó°¨
+                transform.position = Vector2.Lerp(transform.position, new Vector2(transform.position.x, jumpHeight), jumpSpeed * Time.deltaTime); //ìµœëŒ€ ë†’ì´ë¡œ ì˜¬ë¼ê°€ëŠ”ì¤‘~
             }
-            else                                                                     //ÃÖ°íÁ¡±îÁö ¿Ã¶ó°¬À» ¶§
+            else                                                                     //ìµœëŒ€ ë†’ì´ ë„ë‹¬
             {
                 isTop = true;
             }
-            if (transform.position.y > startPosition.y && isTop)                     //ÃÖ°í ³ôÀÌ·Î ¿Ã¶ó°¬´Ù ³»·Á¿Ã ¶§
+            if (transform.position.y > startPosition.y && isTop)                     //ìµœëŒ€ ë†’ì´ ì¼ ê²½ìš°
             {
-                transform.position = Vector2.MoveTowards(transform.position, startPosition, jumpSpeed * Time.deltaTime *2); //´Ù½Ã StartPositionÀ¸·Î ³»·Á¿È
+                transform.position = Vector2.MoveTowards(transform.position, startPosition, jumpSpeed * Time.deltaTime *2); //ë‹¤ì‹œ ë°”ë‹¥ì„ í–¥í•´ ë‚´ë ¤ì˜´
             }
         }
        
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Finish"))
+        {
+            Debug.Log("ì•„ì•—..");
+            GameManager.instance.GameOver();
+        }
     }
 }
