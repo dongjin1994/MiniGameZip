@@ -29,6 +29,9 @@ public class GameManager : MonoBehaviour
     public GameObject gameOver;
     public float score = 0;
     public Text scoreText;
+    public GameObject top_Touch;
+    public GameObject mid_Touch;
+    public GameObject bot_Touch;
     
     IEnumerator Score()
     {
@@ -43,6 +46,9 @@ public class GameManager : MonoBehaviour
     public void PlayStart()
     {
         startBtn.SetActive(false);
+        top_Touch.SetActive(true);
+        mid_Touch.SetActive(true);
+        bot_Touch.SetActive(true);
         isPlay = true;
         onPlay.Invoke(isPlay);
         score = 0;
@@ -51,6 +57,9 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
+        top_Touch.SetActive(false);
+        mid_Touch.SetActive(false);
+        bot_Touch.SetActive(false);
         isPlay = false;
         gameOver.SetActive(true);
         onPlay.Invoke(isPlay);
@@ -59,6 +68,9 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         gameOver.SetActive(false);
+        top_Touch.SetActive(true);
+        mid_Touch.SetActive(true);
+        bot_Touch.SetActive(true);
         isPlay = true;
         onPlay.Invoke(isPlay);
         score = 0;

@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3609864240649499932}
   - component: {fileID: 5010444483449726791}
-  - component: {fileID: 4264260176828702482}
   - component: {fileID: 5411198784642043176}
+  - component: {fileID: 4398535029753395855}
   m_Layer: 0
-  m_Name: Mob2
+  m_Name: M_Mob2
   m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1479744008539763129}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.35, z: 0}
+  m_LocalPosition: {x: 0, y: 3.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7165664504346791739}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
-  m_Color: {r: 0.9811321, g: 0.1804913, b: 0.1804913, a: 1}
+  m_Color: {r: 0.03771934, g: 0.33962262, b: 0.0240299, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -85,19 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4264260176828702482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1479744008539763129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32cfaa50b5640704591eef3a949b2160, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StartPosition: {x: 15.7, y: 0.5}
 --- !u!61 &5411198784642043176
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -124,6 +111,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4398535029753395855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479744008539763129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca40576e961f11439d110fcc53be077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MidSpawnPos: {fileID: 0}
 --- !u!1 &7165664504346791736
 GameObject:
   m_ObjectHideFlags: 0

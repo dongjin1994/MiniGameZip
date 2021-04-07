@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class MobBase : MonoBehaviour
 {
-    
-    public Vector2 StartPosition;
+    Transform TopSpawnPos;
+    //public Vector2 StartPosition;
 
     void OnEnable()
     {
-        transform.position = StartPosition;
+        TopSpawnPos = GameObject.Find("TopSpawn").GetComponent<Transform>();
+        transform.position = TopSpawnPos.position;
+        //transform.position = StartPosition;
     }
     
     void Update()
